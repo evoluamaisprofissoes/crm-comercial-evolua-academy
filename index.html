@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Evolua+ CRM</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090d1c;--s:#111733;--s2:#1a2144;--b:#29336a;--t:#eef1ff;--m:#8f9acb;--c:#22d3ee;--p:#a855f7;--g:#34d399;--r:#fb7185;--y:#fbbf24}
+*{box-sizing:border-box;margin:0}
+body{font:15px 'Space Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--t);display:flex;min-height:100vh}
+nav{width:210px;background:var(--s);border-right:1px solid var(--b);padding:20px 12px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+nav h1{font-size:19px;padding:0 10px 18px}nav h1 b{color:var(--c)}
+nav button{background:none;border:0;color:var(--m);font:inherit;text-align:left;padding:10px 12px;border-radius:8px;cursor:pointer}
+nav button.on{background:var(--s2);color:var(--t);box-shadow:inset 3px 0 var(--c)}
+nav button:hover{color:var(--t)}
+main{flex:1;padding:28px;min-width:0}
+h2{font-size:26px;margin-bottom:4px}.sub{color:var(--m);margin-bottom:22px}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.bar .sp{flex:1}
+input,select,textarea{background:var(--bg);border:1px solid var(--b);color:var(--t);font:inherit;padding:9px 11px;border-radius:8px;width:100%}
+.bar input,.bar select{width:auto}
+:focus-visible{outline:2px solid var(--c);outline-offset:1px}
+.btn{background:var(--c);color:#04121a;border:0;font:inherit;font-weight:700;padding:9px 16px;border-radius:8px;cursor:pointer}
+.btn.g{background:var(--s2);color:var(--t);border:1px solid var(--b);font-weight:500}
+.btn.sm{padding:5px 10px;font-size:13px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:14px}
+.box{background:var(--s);border:1px solid var(--b);border-radius:12px;padding:16px}
+.box h3{font-size:14px;color:var(--m);font-weight:500;margin-bottom:8px}
+.big{font-size:28px;font-weight:700}
+.hero{background:linear-gradient(120deg,#1b2260,#3a1a6b);border-color:#4a3a9a;margin-bottom:14px}
+.hero .big{font-size:44px}
+.prog{height:12px;background:#0a0f26;border-radius:9px;overflow:hidden;margin:12px 0 6px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--c),var(--p));border-radius:9px}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.row{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:14px}
+.row span:first-child{width:96px;color:var(--m)}.row .tr{flex:1;height:10px;background:#0a0f26;border-radius:6px}
+.row .tr i{display:block;height:100%;border-radius:6px}.row b{width:34px;text-align:right}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;color:var(--m);font-weight:500;font-size:13px;padding:8px;border-bottom:1px solid var(--b)}
+td{padding:10px 8px;border-bottom:1px solid #1d2552;vertical-align:middle}
+.tw{overflow-x:auto}
+.tag{padding:3px 9px;border-radius:20px;font-size:12px;background:var(--s2);white-space:nowrap}
+.kan{display:flex;gap:12px;overflow-x:auto;padding-bottom:10px}
+.col{min-width:230px;flex:1;background:var(--s);border:1px solid var(--b);border-radius:12px;padding:10px;min-height:300px}
+.col h3{font-size:14px;padding:4px 6px 10px;display:flex;justify-content:space-between}
+.col.over{border-color:var(--c)}
+.card{background:var(--s2);border:1px solid var(--b);border-radius:9px;padding:10px;margin-bottom:8px;cursor:grab;font-size:14px}
+.card small{color:var(--m);display:block;margin-top:3px}
+.ag{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #1d2552}
+.ag .when{color:var(--c);font-size:13px}.late .when{color:var(--r)}
+.acts{display:flex;gap:6px;flex-wrap:wrap}
+dialog{background:var(--s);color:var(--t);border:1px solid var(--b);border-radius:14px;padding:22px;width:min(520px,94vw);margin:auto}
+dialog::backdrop{background:#000a}
+.f{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.f label{font-size:13px;color:var(--m);display:block}.f label input,.f label select,.f label textarea{margin-top:4px}
+.f .w{grid-column:1/-1}
+.empty{color:var(--m);padding:18px 0}
+@media(max-width:760px){body{flex-direction:column}nav{width:100%;height:auto;flex-direction:row;overflow-x:auto;position:static;padding:10px}nav h1{display:none}nav button{white-space:nowrap}main{padding:16px}.f{grid-template-columns:1fr}}
+
+/* EVOLUA+ CRM | identidade visual inspirada na campanha */
+:root{--bg:#070817;--s:#10112b;--s2:#19163d;--b:#35266b;--t:#f7f5ff;--m:#aaa4c9;--c:#22d3ee;--p:#a855f7;--g:#34d399;--r:#fb7185;--y:#fbbf24}
+body{background:radial-gradient(ellipse at 75% 0%,#24105a 0%,#0b0b20 42%,#050611 100%);}
+nav{background:rgba(10,10,31,.94);backdrop-filter:blur(16px);border-right:1px solid #34205f}
+nav h1{letter-spacing:-.7px}nav h1 b{color:#b65cff}
+nav button{transition:.2s}nav button.on{background:linear-gradient(100deg,#32136a,#18244b);box-shadow:inset 3px 0 #b65cff}
+main{padding:30px}
+.box{background:linear-gradient(145deg,rgba(24,22,58,.96),rgba(13,16,39,.96));border-color:#34245f;box-shadow:0 12px 34px #0003}
+.hero{background:linear-gradient(115deg,#24105a,#172d68 58%,#24105a);border-color:#6840a7}
+.btn{background:linear-gradient(100deg,#a855f7,#6d5dfc);color:white;box-shadow:0 5px 18px #8b35e833;transition:transform .18s,filter .18s}
+.btn:hover{filter:brightness(1.13);transform:translateY(-1px)}
+.btn.g{background:#171735;color:#e9e4ff;border-color:#44316f;box-shadow:none}
+input,select,textarea{background:#090b20;border-color:#3a2c69}
+.tag{background:#211747}
+.col{background:rgba(15,16,42,.95);border-color:#34245f}
+.card{background:linear-gradient(135deg,#211747,#151b3d);border-color:#493276}
+.entry-screen{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:24px;background:#050510;overflow:auto}
+.entry-screen:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,16,.2),rgba(5,5,16,.48) 48%,rgba(5,5,16,.78)),url('assets/evolua-crm-banner.png') center/cover no-repeat;filter:saturate(1.08)}
+.entry-screen:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 45%,transparent 0,rgba(4,4,18,.18) 60%,rgba(4,4,18,.62) 100%);pointer-events:none}
+.entry-card{position:relative;z-index:1;width:min(420px,100%);margin-left:auto;margin-right:5vw;padding:30px;border:1px solid #7044a8;border-radius:22px;background:rgba(9,9,29,.88);backdrop-filter:blur(18px);box-shadow:0 24px 90px #0009}
+.entry-brand{font-size:27px;font-weight:700;letter-spacing:-1px;margin-bottom:5px}.entry-brand b{color:#b45cff}.entry-kicker{color:#c5b7e9;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px}
+.entry-card h2{font-size:24px;margin-bottom:6px}.entry-card p{color:var(--m);font-size:14px;line-height:1.5;margin-bottom:18px}
+.entry-card label{display:block;color:#c8c1e0;font-size:13px;margin:13px 0 6px}.entry-card input{margin-top:6px;padding:12px 13px}
+.entry-card .btn{width:100%;padding:12px;margin-top:18px}.entry-foot{font-size:11px;color:#82799f;margin-top:18px;text-align:center}
+.entry-error{color:#fda4af;font-size:13px;margin-top:10px;min-height:18px}
+@media(max-width:760px){.entry-screen:before{background-position:35% center;opacity:.75}.entry-card{margin:0;background:rgba(8,8,27,.91)}main{padding:16px}}
+
+/* Painel de impacto, ações e lembretes */
+.logout-btn{margin-top:auto!important;color:#ff9eaf!important;border:1px solid #66304f!important;background:#24112c!important}
+.hero{position:relative;overflow:hidden;min-height:190px;padding:24px 26px;background:radial-gradient(circle at 90% 15%,#7736c9 0,transparent 30%),linear-gradient(115deg,#24105a,#172d68 58%,#10112b)!important}
+.hero:after{content:"EVOLUA+";position:absolute;right:20px;bottom:-26px;font-size:clamp(50px,9vw,120px);font-weight:700;letter-spacing:-8px;color:#ffffff0a;pointer-events:none}
+.hero .big{font-size:clamp(34px,4vw,52px);letter-spacing:-2px}.hero h3{color:#d8c9ff!important;text-transform:uppercase;letter-spacing:2px}
+.metric{position:relative;overflow:hidden;min-height:112px}.metric:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-28px;top:-28px;background:var(--glow,#a855f7);opacity:.13;filter:blur(2px)}
+.metric .big{font-size:30px}.metric .hint{font-size:12px;color:var(--m);margin-top:6px}.metric .symbol{font-size:20px;color:var(--accent,#c084fc);margin-bottom:10px}
+.dash-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.dash-head .sub{margin-bottom:14px}
+.dash-section{margin:18px 0 10px;font-size:15px;color:#d8d0f5;letter-spacing:.4px}.dash-list{display:grid;gap:9px}.dash-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #34245f}.dash-item small{display:block;color:var(--m);margin-top:3px}.pill-live{display:inline-flex;align-items:center;gap:7px;color:#9fffe0;font-size:12px}.pill-live:before{content:"";width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 12px #34d399}
+.reminder-layer{position:fixed;inset:0;z-index:10000;display:none;place-items:center;padding:22px;background:rgba(3,3,15,.78);backdrop-filter:blur(9px)}
+.reminder-layer.active{display:grid}
+.reminder{position:relative;width:min(720px,96vw);min-height:390px;padding:38px 42px 32px;border:2px solid #bd68ff;border-radius:28px;text-align:center;background:radial-gradient(circle at 50% 0%,#51228a 0,transparent 48%),linear-gradient(145deg,#17103b,#080d25 72%);box-shadow:0 25px 100px #000e,0 0 0 7px #a855f722,0 0 65px #a855f799;animation:alertEntrance .45s cubic-bezier(.2,.9,.25,1.2),msnShake .72s ease-in-out .45s 3}
+.reminder.shaking{animation:msnShake .72s ease-in-out infinite}.reminder.urgent{border-color:#ff718e;box-shadow:0 25px 100px #000e,0 0 0 7px #fb718522,0 0 75px #fb456f99}
+.reminder-icon{font-size:58px;line-height:1;margin:0 auto 14px;filter:drop-shadow(0 0 18px #bd68ff)}
+.reminder .when{display:inline-block;color:#f3c4ff;font-size:13px;font-weight:700;letter-spacing:3px;padding:8px 15px;border-radius:30px;background:#a855f72a;border:1px solid #a855f766}
+.reminder.urgent .when{color:#ffc1ce;background:#fb718522;border-color:#fb718577}
+.reminder h3{font-size:clamp(25px,4vw,36px);margin:17px 0 12px;color:#fff}
+.reminder p{color:#d6d0f0;font-size:17px;line-height:1.65;margin:0 auto;max-width:560px;overflow-wrap:anywhere}
+.reminder p b{font-size:23px;color:#fff}
+.reminder-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+.reminder-actions button{font-size:14px;padding:12px 17px;min-width:130px}
+.reminder-close{position:absolute;right:17px;top:12px;background:#ffffff12;color:#fff;border:1px solid #ffffff30;border-radius:50%;width:42px;height:42px;font-size:27px;cursor:pointer}
+.reminder-hint{color:#9d93c6;font-size:12px;margin-top:18px}
+@keyframes alertEntrance{from{opacity:0;transform:scale(.78) translateY(35px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes msnShake{0%,100%{transform:translateX(0) rotate(0)}12%{transform:translateX(-13px) rotate(-1deg)}24%{transform:translateX(12px) rotate(1deg)}36%{transform:translateX(-10px) rotate(-.7deg)}48%{transform:translateX(9px) rotate(.7deg)}60%{transform:translateX(-6px)}72%{transform:translateX(5px)}84%{transform:translateX(-2px)}}
+@media(max-width:760px){.logout-btn{margin-top:0!important}.hero:after{font-size:48px}.reminder{padding:34px 18px 24px;min-height:0}.reminder p{font-size:15px}.reminder-actions{display:grid;grid-template-columns:1fr 1fr}.reminder-actions button{min-width:0}}
+</style></head><body><div class="entry-screen" id="entry"><form class="entry-card" id="loginForm"><div class="entry-brand">Evolua<b>+</b> CRM</div><div class="entry-kicker">Gestão de leads · Evolua Academy</div><h2 id="loginTitle">Bem-vindo de volta!</h2><p id="loginDesc">Entre para acompanhar seus leads, contatos e matrículas.</p><div id="setupFields" hidden><label>Nome de usuário<input id="newUser" autocomplete="username" placeholder="Ex.: admin"></label><label>Crie sua senha<input id="newPass" type="password" autocomplete="new-password" placeholder="Mínimo de 6 caracteres"></label><label>Confirme a senha<input id="confirmPass" type="password" autocomplete="new-password"></label></div><div id="loginFields"><label>Usuário<input id="user" autocomplete="username" required placeholder="Seu usuário"></label><label>Senha<input id="pass" type="password" autocomplete="current-password" required placeholder="Sua senha"></label></div><button class="btn" id="loginBtn" type="submit">Entrar no sistema</button><div class="entry-error" id="loginError" role="alert"></div><div class="entry-foot">Evolua+ CRM · Educação que transforma</div></form></div>
+
+<nav><h1>Evolua<b>+</b> CRM</h1>
+<button data-t="dash">Painel</button><button data-t="leads">Leads</button><button data-t="funil">Funil</button><button data-t="agenda">Agenda</button><button data-t="tarefas">Tarefas</button><button data-t="metas">Metas</button><button data-t="dados">Backup</button><button id="logoutBtn" class="logout-btn" type="button">⇥ Sair</button></nav>
+<main id="v"></main><div id="reminderLayer" class="reminder-layer" aria-live="assertive"></div>
+<dialog id="dlg"><form method="dialog" id="fm"><h2 id="dt">Novo lead</h2>
+<div class="f">
+<label class="w">Nome<input name="nome" required></label>
+<label>WhatsApp<input name="tel" placeholder="66 99999-9999"></label>
+<label>Curso de interesse<input name="curso"></label>
+<label>Origem do lead<input name="origem" list="origens" placeholder="Ex.: Instagram, indicação..."><datalist id="origens"></datalist></label>
+<label>Etapa<select name="etapa"></select></label>
+<label>Valor (R$)<input name="valor" type="number" step="0.01" min="0"></label>
+<label>Próximo contato<input name="prox" type="datetime-local"></label>
+<label class="w">Observações<textarea name="obs" rows="3"></textarea></label></div>
+<div class="bar"><button class="btn" type="submit">Salvar lead</button><button class="btn g" type="button" id="cx">Cancelar</button><span class="sp"></span><button class="btn g" type="button" id="del" hidden>Excluir</button></div></form></dialog>
+<dialog id="taskDlg"><form method="dialog" id="taskForm"><h2 id="taskTitle">Nova tarefa</h2><div class="f"><label class="w">Tarefa<input name="titulo" required placeholder="Ex.: Ligar para fornecedor"></label><label>Data e horário<input name="quando" type="datetime-local" required></label><label>Tempo previsto<select name="duracao"><option value="15">15 minutos</option><option value="30" selected>30 minutos</option><option value="60">1 hora</option><option value="120">2 horas</option><option value="240">4 horas</option><option value="480">8 horas</option></select></label><label class="w">Descrição / observações<textarea name="descricao" rows="3"></textarea></label></div><div class="bar"><button class="btn" type="submit">Salvar tarefa</button><button class="btn g" type="button" id="taskCancel">Cancelar</button><span class="sp"></span><button class="btn g" type="button" id="taskDelete" hidden>Excluir</button></div></form></dialog>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+const ET=['Novo','Contato','Proposta','Negociação','Ganho','Perdido'],OR=['WhatsApp','Instagram','Indicação','Site','Presencial','Outro'];
+const COR={Novo:'#22d3ee',Contato:'#60a5fa',Proposta:'#a855f7','Negociação':'#fbbf24',Ganho:'#34d399',Perdido:'#fb7185'};
+const K='evolua_crm_v1';let D;
+try{D=JSON.parse(localStorage.getItem(K))}catch(e){}
+D=D||{leads:[],metas:{},tarefas:[]};D.tarefas=Array.isArray(D.tarefas)?D.tarefas:[];
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(D))}catch(e){alert('Não foi possível salvar no navegador. Exporte um backup.')}};
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const R=n=>(+n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const hoje=()=>{const d=new Date();return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+let tab='dash',mes=hoje().slice(0,7),q='',fe='';
+const fdt=s=>s?new Date(s).toLocaleString('pt-BR',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}):'—';
+function bars(o,cor){const m=Math.max(1,...Object.values(o));return Object.entries(o).map(([k,v])=>`<div class="row"><span>${esc(k)}</span><div class="tr"><i style="width:${v/m*100}%;background:${cor?.[k]||'var(--c)'}"></i></div><b>${v}</b></div>`).join('')||'<p class="empty">Sem dados ainda.</p>'}
+function dash(){
+ const L=D.leads,novos=L.filter(l=>(l.criado||'').slice(0,7)==mes),ganhos=L.filter(l=>l.etapa=='Ganho'&&(l.fechado||'').slice(0,7)==mes);
+ const fat=ganhos.reduce((a,l)=>a+(+l.valor||0),0),meta=+D.metas[mes]||0,pct=meta?Math.min(100,fat/meta*100):0;
+ const aberto=L.filter(l=>!['Ganho','Perdido'].includes(l.etapa)),pipe=aberto.reduce((a,l)=>a+(+l.valor||0),0),conv=novos.length?ganhos.length/novos.length*100:0;
+ const hojeLista=aberto.filter(l=>l.prox&&(new Date(l.prox)<=new Date())).sort((a,b)=>a.prox.localeCompare(b.prox));
+ const proximos=aberto.filter(l=>l.prox&&new Date(l.prox)>new Date()).sort((a,b)=>a.prox.localeCompare(b.prox)).slice(0,5);
+ const fun={};ET.forEach(e=>fun[e]=novos.filter(l=>l.etapa==e).length);const ori={};[...new Set(novos.map(l=>l.origem).filter(Boolean))].forEach(o=>{ori[o]=novos.filter(l=>l.origem==o).length});
+ const recentes=[...L].sort((a,b)=>(b.criado||'').localeCompare(a.criado||'')).slice(0,5);
+ return `<div class="dash-head"><div><h2>Painel comercial</h2><p class="sub">Visão geral da sua operação comercial.</p></div><div class="pill-live">Sistema ativo</div></div>
+ <div class="bar"><input type="month" value="${mes}" onchange="mes=this.value;go()"><span class="sp"></span><button class="btn" onclick="edit()">＋ Novo lead</button></div>
+ <div class="box hero"><h3>Faturamento conquistado no mês</h3><div class="big">${R(fat)} <span style="font-size:17px;color:#c8b9ef;font-weight:500">${meta?'de '+R(meta):'· defina sua meta'}</span></div><div class="prog"><i style="width:${pct}%"></i></div><small style="color:#c8b9ef">${meta?pct.toFixed(0)+'% da meta alcançada · faltam '+R(Math.max(0,meta-fat)):'Cadastre uma meta mensal para acompanhar seu avanço.'}</small></div>
+ <div class="grid"><div class="box metric" style="--accent:#22d3ee;--glow:#22d3ee"><div class="symbol">✦ Novos leads</div><div class="big">${novos.length}</div><div class="hint">Entraram neste mês</div></div><div class="box metric" style="--accent:#34d399;--glow:#34d399"><div class="symbol">✓ Matrículas</div><div class="big">${ganhos.length}</div><div class="hint">Vendas fechadas no mês</div></div><div class="box metric" style="--accent:#c084fc;--glow:#a855f7"><div class="symbol">↗ Conversão</div><div class="big">${conv.toFixed(1)}%</div><div class="hint">Matrículas ÷ leads do mês</div></div><div class="box metric" style="--accent:#fbbf24;--glow:#fbbf24"><div class="symbol">◈ Em negociação</div><div class="big">${R(pipe)}</div><div class="hint">Valor potencial em aberto</div></div><div class="box metric" style="--accent:#fb7185;--glow:#fb7185"><div class="symbol">◷ Atrasados / agora</div><div class="big">${hojeLista.length}</div><div class="hint">Contatos que pedem atenção</div></div><div class="box metric" style="--accent:#60a5fa;--glow:#60a5fa"><div class="symbol">◎ Ticket médio</div><div class="big">${R(ganhos.length?fat/ganhos.length:0)}</div><div class="hint">Por matrícula fechada</div></div></div>
+ <h3 class="dash-section">Desempenho e acompanhamento</h3><div class="two"><div class="box"><h3>Leads por etapa neste mês</h3>${bars(fun,COR)}</div><div class="box"><h3>De onde vêm seus leads</h3>${bars(ori)}</div></div>
+ <div class="two" style="margin-top:14px"><div class="box"><h3>⚡ Contatos que precisam de atenção</h3><div class="dash-list">${hojeLista.length?hojeLista.slice(0,6).map(l=>`<div class="dash-item"><div><b>${esc(l.nome)}</b><small>${esc(l.curso)||'Sem curso'} · ${esc(l.etapa)}</small></div><span class="tag" style="color:var(--r)">${fdt(l.prox)}</span></div>`).join(''):'<p class="empty">Nenhum contato atrasado ou previsto para agora.</p>'}</div></div><div class="box"><h3>◷ Próximos contatos</h3><div class="dash-list">${proximos.length?proximos.map(l=>`<div class="dash-item"><div><b>${esc(l.nome)}</b><small>${esc(l.curso)||'Sem curso'} · ${esc(l.etapa)}</small></div><span class="tag">${fdt(l.prox)}</span></div>`).join(''):'<p class="empty">Nenhum contato futuro agendado.</p>'}</div></div></div>
+ <div class="box" style="margin-top:14px"><h3>Leads adicionados recentemente</h3><div class="dash-list">${recentes.length?recentes.map(l=>`<div class="dash-item"><div><b>${esc(l.nome)}</b><small>${esc(l.curso)||'Sem curso'} · ${esc(l.origem)||'Origem não informada'}</small></div><span class="tag" style="color:${COR[l.etapa]||'var(--t)'}">${esc(l.etapa)}</span></div>`).join(''):'<p class="empty">Seus novos leads aparecerão aqui.</p>'}</div></div>`}
+
+function leads(){
+const L=D.leads.filter(l=>(!fe||l.etapa==fe)&&(l.nome+l.tel+l.curso+l.origem).toLowerCase().includes(q.toLowerCase())).sort((a,b)=>b.criado.localeCompare(a.criado));
+return `<h2>Leads</h2><p class="sub">${D.leads.length} cadastrados.</p>
+<div class="bar"><input placeholder="Buscar nome, telefone ou curso" value="${esc(q)}" oninput="q=this.value;go(1)" style="min-width:240px"><select onchange="fe=this.value;go()"><option value="">Todas as etapas</option>${ET.map(e=>`<option ${fe==e?'selected':''}>${e}</option>`).join('')}</select><span class="sp"></span><button class="btn" onclick="edit()">Novo lead</button></div>
+<div class="box tw" id="tb">${tbl(L)}</div>`}
+function tbl(L){return L.length?`<table><tr><th>Nome</th><th>Curso</th><th>Origem</th><th>Etapa</th><th>Valor</th><th>Próximo contato</th><th></th></tr>${L.map(l=>`<tr><td><b>${esc(l.nome)}</b><br><small style="color:var(--m)">${esc(l.tel)}</small></td><td>${esc(l.curso)||'—'}</td><td>${esc(l.origem)||'—'}</td><td><span class="tag" style="color:${COR[l.etapa]}">${l.etapa}</span></td><td>${R(l.valor)}</td><td>${fdt(l.prox)}</td><td class="acts"><button class="btn g sm" onclick="edit('${l.id}')">Editar</button>${l.tel?`<a class="btn g sm" style="text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/55${l.tel.replace(/\D/g,'')}">WhatsApp</a>`:''}</td></tr>`).join('')}</table>`:'<p class="empty">Nenhum lead encontrado. Clique em “Novo lead” para começar.</p>'}
+function funil(){return `<h2>Funil</h2><p class="sub">Arraste os cards entre as colunas.</p><div class="kan">${ET.map(e=>{const c=D.leads.filter(l=>l.etapa==e);return `<div class="col" data-e="${e}" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="drop(event,'${e}')"><h3 style="color:${COR[e]}"><span>${e}</span><span>${c.length}</span></h3>${c.map(l=>`<div class="card" draggable="true" ondragstart="event.dataTransfer.setData('t','${l.id}')" onclick="edit('${l.id}')"><b>${esc(l.nome)}</b><small>${esc(l.curso)||'Sem curso'} · ${R(l.valor)}</small></div>`).join('')}</div>`}).join('')}</div>`}
+function drop(ev,e){ev.preventDefault();const l=D.leads.find(x=>x.id==ev.dataTransfer.getData('t'));if(l){mover(l,e);save();go()}}
+function mover(l,e){l.etapa=e;l.fechado=e=='Ganho'?(l.fechado||hoje()):''}
+function agenda(){
+const A=D.leads.filter(l=>l.prox&&!['Ganho','Perdido'].includes(l.etapa)).sort((a,b)=>a.prox.localeCompare(b.prox)),now=new Date();
+return `<h2>Agenda</h2><p class="sub">Follow-ups pendentes. Envie para o Google Agenda com um clique.</p><div class="box">${A.length?A.map(l=>`<div class="ag ${new Date(l.prox)<now?'late':''}"><div><b>${esc(l.nome)}</b> <span class="tag">${l.etapa}</span><div class="when">${fdt(l.prox)}${new Date(l.prox)<now?' · atrasado':''}</div></div><div class="acts"><a class="btn sm" style="text-decoration:none" target="_blank" rel="noopener" href="${gcal(l)}">Google Agenda</a><button class="btn g sm" onclick="ics('${l.id}')">Baixar .ics</button><button class="btn g sm" onclick="feito('${l.id}')">Concluir</button></div></div>`).join(''):'<p class="empty">Nenhum follow-up marcado. Defina o “Próximo contato” em um lead.</p>'}</div>`}
+function ev(l){const p=s=>s.replace(/[-:]/g,'').slice(0,13)+'00',e=new Date(new Date(l.prox).getTime()+18e5),ee=new Date(e-e.getTimezoneOffset()*6e4).toISOString();return{ini:p(l.prox),fim:p(ee),t:'Contato: '+l.nome,d:`Lead Evolua+ · ${l.curso||'sem curso'} · ${l.tel||''}\n${l.obs||''}`}}
+function gcal(l){const e=ev(l);return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.t)+'&dates='+e.ini+'/'+e.fim+'&details='+encodeURIComponent(e.d)}
+function ics(id){const l=D.leads.find(x=>x.id==id),e=ev(l),t=e.d.replace(/\n/g,'\\n');dl(`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Evolua CRM//PT\r\nBEGIN:VEVENT\r\nUID:${l.id}@evolua\r\nDTSTAMP:${new Date().toISOString().replace(/[-:]|\.\d+/g,'')}\r\nDTSTART:${e.ini}\r\nDTEND:${e.fim}\r\nSUMMARY:${e.t}\r\nDESCRIPTION:${t}\r\nBEGIN:VALARM\r\nTRIGGER:-PT15M\r\nACTION:DISPLAY\r\nDESCRIPTION:Lembrete\r\nEND:VALARM\r\nEND:VEVENT\r\nEND:VCALENDAR`,'follow-up.ics','text/calendar')}
+function feito(id){const l=D.leads.find(x=>x.id==id);l.prox='';save();go()}
+function tarefas(){const abertas=D.tarefas.filter(t=>!t.concluida).sort((a,b)=>a.quando.localeCompare(b.quando));const feitas=D.tarefas.filter(t=>t.concluida).sort((a,b)=>(b.concluidaEm||'').localeCompare(a.concluidaEm||''));return `<div class="dash-head"><div><h2>Gestão de tarefas</h2><p class="sub">Organize o que precisa fazer e receba alertas no horário definido.</p></div><button class="btn" onclick="editTask()">＋ Nova tarefa</button></div><div class="grid"><div class="box metric"><h3>Pendentes</h3><div class="big">${abertas.length}</div></div><div class="box metric"><h3>Atrasadas</h3><div class="big" style="color:var(--r)">${abertas.filter(t=>new Date(t.quando)<=new Date()).length}</div></div><div class="box metric"><h3>Concluídas</h3><div class="big" style="color:var(--g)">${feitas.length}</div></div></div><div class="box"><h3>📌 Tarefas pendentes</h3>${abertas.length?abertas.map(t=>`<div class="ag ${new Date(t.quando)<new Date()?'late':''}"><div><b>${esc(t.titulo)}</b><div class="when">${fdt(t.quando)} · Duração prevista: ${t.duracao} min</div><small>${esc(t.descricao||'')}</small></div><div class="acts"><button class="btn sm" onclick="completeTask('${t.id}')">✓ Realizada</button><button class="btn g sm" onclick="editTask('${t.id}')">Editar</button></div></div>`).join(''):'<p class="empty">Nenhuma tarefa pendente. Cadastre a próxima!</p>'}</div><div class="box" style="margin-top:14px"><h3>✓ Histórico concluído</h3>${feitas.length?feitas.map(t=>`<div class="ag"><div><b>${esc(t.titulo)}</b><div class="when">Concluída em ${fdt(t.concluidaEm)}</div></div><span class="tag" style="color:var(--g)">Realizada</span></div>`).join(''):'<p class="empty">Ainda não há tarefas concluídas.</p>'}</div>`}
+let taskId=null;const taskDlg=$('#taskDlg'),taskForm=$('#taskForm');function editTask(id){taskId=id||null;const t=D.tarefas.find(x=>x.id===id)||{duracao:30};$('#taskTitle').textContent=id?'Editar tarefa':'Nova tarefa';$('#taskDelete').hidden=!id;['titulo','quando','duracao','descricao'].forEach(k=>taskForm.elements[k].value=t[k]??'');taskDlg.showModal()}function completeTask(id){const t=D.tarefas.find(x=>x.id===id);if(t){t.concluida=true;t.concluidaEm=new Date().toISOString();save();dismissReminder('task-'+id);go()}}
+$('#taskCancel').onclick=()=>taskDlg.close();$('#taskDelete').onclick=()=>{if(confirm('Excluir esta tarefa?')){D.tarefas=D.tarefas.filter(t=>t.id!==taskId);dismissReminder('task-'+taskId);save();taskDlg.close();go()}};taskForm.onsubmit=()=>{const v=Object.fromEntries(new FormData(taskForm));let t=D.tarefas.find(x=>x.id===taskId);if(!t){t={id:Date.now().toString(36),concluida:false};D.tarefas.push(t)}Object.assign(t,v);t.concluida=false;save();go()};
+function metas(){const ms=Object.keys(D.metas).sort().reverse();
+return `<h2>Metas</h2><p class="sub">Defina a meta de faturamento de cada mês.</p>
+<div class="box bar"><input type="month" id="mm" value="${mes}" style="max-width:180px"><input type="number" id="mv" min="0" step="100" placeholder="Meta em R$" value="${D.metas[mes]||''}" style="max-width:200px"><button class="btn" onclick="setMeta()">Salvar meta</button></div>
+<div class="box tw">${ms.length?`<table><tr><th>Mês</th><th>Meta</th><th>Realizado</th><th>Atingido</th><th></th></tr>${ms.map(m=>{const f=D.leads.filter(l=>l.etapa=='Ganho'&&(l.fechado||'').slice(0,7)==m).reduce((a,l)=>a+(+l.valor||0),0),p=D.metas[m]?f/D.metas[m]*100:0;return `<tr><td>${m.split('-').reverse().join('/')}</td><td>${R(D.metas[m])}</td><td>${R(f)}</td><td style="color:${p>=100?'var(--g)':'var(--t)'}">${p.toFixed(0)}%</td><td><button class="btn g sm" onclick="delMeta('${m}')">Remover</button></td></tr>`}).join('')}</table>`:'<p class="empty">Nenhuma meta cadastrada ainda.</p>'}</div>`}
+function setMeta(){const m=$('#mm').value,v=+$('#mv').value;if(!m||!v)return alert('Informe o mês e o valor da meta.');D.metas[m]=v;mes=m;save();go()}
+function delMeta(m){delete D.metas[m];save();go()}
+function dados(){return `<h2>Backup e importação</h2><p class="sub">Faça cópias de segurança e importe listas de leads recebidas em Excel, sem apagar os cadastros existentes.</p><div class="box"><h3>Backup completo</h3><div class="bar"><button class="btn" onclick="exp()">Exportar backup (.json)</button><label class="btn g">Importar backup<input type="file" accept=".json" hidden onchange="imp(this.files[0])"></label></div></div><div class="box" style="margin-top:14px"><h3>Importação em massa de leads</h3><p class="sub" style="margin:6px 0 14px">Selecione uma planilha Excel (.xlsx ou .xls) ou CSV. Os novos leads serão adicionados aos atuais. Cadastros repetidos serão ignorados pelo telefone.</p><div class="bar"><label class="btn">📥 Importar planilha Excel<input type="file" accept=".xlsx,.xls,.csv" hidden onchange="importarPlanilha(this.files[0]);this.value=''"></label><button class="btn g" onclick="baixarModeloImportacao()">Baixar modelo Excel</button><button class="btn g" onclick="csv()">Exportar leads (.csv)</button></div><small style="color:var(--m)">Colunas reconhecidas: Nome, WhatsApp/Telefone, Curso/Interesse, Origem, Etapa, Valor e Observações. Nome é obrigatório.</small></div><div id="importResult" class="box" style="display:none;margin-top:14px"></div>`}
+function dl(txt,nome,tipo){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:tipo+';charset=utf-8'}));a.download=nome;a.click()}
+function exp(){dl(JSON.stringify(D,null,1),'evolua-crm-backup-'+hoje()+'.json','application/json')}
+function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!Array.isArray(x.leads))throw 0;if(confirm('Substituir os dados atuais pelo backup?')){D={leads:x.leads,metas:x.metas||{},tarefas:Array.isArray(x.tarefas)?x.tarefas:[]};save();go()}}catch(e){alert('Arquivo inválido.')}};r.readAsText(f)}
+function csv(){const c=['nome','tel','curso','origem','etapa','valor','prox','criado','fechado','obs'];dl('\ufeff'+[c.join(';')].concat(D.leads.map(l=>c.map(k=>'"'+String(l[k]??'').replace(/"/g,'""')+'"').join(';'))).join('\n'),'leads.csv','text/csv')}
+function normHead(v){return String(v??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'')}
+function baixarModeloImportacao(){const rows=[['Nome','WhatsApp','Curso de interesse','Origem','Etapa','Valor','Observações'],['Maria da Silva','66999999999','Informática','Indicação','Novo','0','Interessada em aulas presenciais']];const ws=XLSX.utils.aoa_to_sheet(rows),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Leads');XLSX.writeFile(wb,'modelo-importacao-leads-evolua.xlsx')}
+async function importarPlanilha(file){if(!file)return;if(typeof XLSX==='undefined'){alert('Não foi possível carregar o leitor de Excel. Verifique sua conexão com a internet e tente novamente.');return}try{const buf=await file.arrayBuffer(),wb=XLSX.read(buf,{type:'array',cellDates:true}),ws=wb.Sheets[wb.SheetNames[0]],rows=XLSX.utils.sheet_to_json(ws,{defval:'',raw:false});if(!rows.length){alert('A planilha está vazia ou não possui cabeçalho.');return}const aliases={nome:['nome','name','aluno','lead','nomecompleto'],tel:['whatsapp','telefone','celular','contato','fone','numerowhatsapp'],curso:['curso','interesse','cursodeinteresse','cursointeresse'],origem:['origem','origemlead','fonte','canal'],etapa:['etapa','status','situacao'],valor:['valor','valorinteresse','mensalidade'],obs:['observacoes','observacao','notas','comentarios','descricao']};const keys=Object.keys(rows[0]),map={};for(const [field,names] of Object.entries(aliases)){const k=keys.find(x=>names.includes(normHead(x)));if(k)map[field]=k}if(!map.nome){alert('Não encontrei uma coluna de Nome. Confira o cabeçalho da planilha.');return}let added=0,skipped=0,invalid=0;const known=new Set(D.leads.map(l=>String(l.tel||'').replace(/\D/g,'' )).filter(Boolean));for(const row of rows){const get=f=>map[f]!==undefined?String(row[map[f]]??'').trim():'';const nome=get('nome');if(!nome){invalid++;continue}const tel=get('tel'),digits=tel.replace(/\D/g,'');if(digits&&known.has(digits)){skipped++;continue}const rawEtapa=get('etapa'),etapa=ET.find(e=>normHead(e)===normHead(rawEtapa))||'Novo';const l={id:(Date.now()+Math.random()).toString(36),nome,tel,curso:get('curso'),origem:get('origem')||'Importação Excel',etapa,valor:String(get('valor')).replace(',','.'),prox:'',criado:hoje(),fechado:'',obs:get('obs')};D.leads.push(l);if(digits)known.add(digits);added++}if(added){save();go()}const box=$('#importResult');if(box){box.style.display='block';box.innerHTML=`<h3>Importação concluída</h3><p style="margin-top:8px">✅ <b>${added}</b> leads adicionados<br>↪️ <b>${skipped}</b> duplicados ignorados (telefone já cadastrado)<br>⚠️ <b>${invalid}</b> linhas ignoradas por falta de nome</p>`}alert(`Importação concluída!\n${added} leads adicionados.\n${skipped} duplicados ignorados.\n${invalid} linhas sem nome ignoradas.`)}catch(err){console.error(err);alert('Não consegui ler essa planilha. Salve como .xlsx ou .csv e tente novamente.')}}
+const dlg=$('#dlg'),fm=$('#fm');let eid=null;
+document.querySelector('#origens').innerHTML=OR.map(o=>`<option value="${o}"></option>`).join('');document.querySelector('[name=etapa]').innerHTML=ET.map(o=>`<option>${o}</option>`).join('');
+function edit(id){eid=id||null;const l=D.leads.find(x=>x.id==id)||{etapa:'Novo',origem:'WhatsApp'};$('#dt').textContent=id?'Editar lead':'Novo lead';$('#del').hidden=!id;['nome','tel','curso','origem','etapa','valor','prox','obs'].forEach(k=>fm.elements[k].value=l[k]??'');dlg.showModal()}
+$('#cx').onclick=()=>dlg.close();
+$('#del').onclick=()=>{if(confirm('Excluir este lead?')){D.leads=D.leads.filter(l=>l.id!=eid);save();dlg.close();go()}};
+fm.onsubmit=()=>{const v=Object.fromEntries(new FormData(fm));let l=D.leads.find(x=>x.id==eid);if(!l){l={id:Date.now().toString(36),criado:hoje()};D.leads.push(l)}const old=l.etapa;Object.assign(l,v);if(l.etapa!=old||!l.fechado)mover(l,l.etapa);save();go()};
+function go(keep){const m={dash,leads,funil,agenda,tarefas,metas,dados};if(keep&&tab=='leads'){$('#tb').innerHTML=tbl(D.leads.filter(l=>(!fe||l.etapa==fe)&&(l.nome+l.tel+l.curso+l.origem).toLowerCase().includes(q.toLowerCase())).sort((a,b)=>b.criado.localeCompare(a.criado)));return}
+$('#v').innerHTML=m[tab]();document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==tab))}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;go()});
+go();
+
+
+// Encerrar sessão local
+$('#logoutBtn').onclick=()=>{sessionStorage.removeItem('evolua_crm_unlocked');location.reload()};
+
+// Alertas unificados de leads e tarefas. Tremor sincronizado com cada ciclo de áudio.
+const alerted=new Set();let soundEnabled=false,soundCycleTimer=null,soundStopTimer=null;
+const reminderAudio=new Audio('assets/msn-alert.mp3');reminderAudio.preload='auto';reminderAudio.volume=1;
+function unlockReminderAudio(){soundEnabled=true;try{const p=reminderAudio.play();if(p&&p.then)p.then(()=>{reminderAudio.pause();reminderAudio.currentTime=0}).catch(()=>{});}catch(e){}}
+function stopReminderSound(){clearTimeout(soundCycleTimer);clearTimeout(soundStopTimer);soundCycleTimer=soundStopTimer=null;reminderAudio.pause();try{reminderAudio.currentTime=0}catch(e){}document.querySelectorAll('.reminder').forEach(x=>x.classList.remove('shaking'));}
+function playReminderSound(){if(!soundEnabled||!$('#reminderLayer').querySelector('.reminder'))return;stopReminderSound();const cycle=()=>{const cards=[...$('#reminderLayer').querySelectorAll('.reminder')];if(!cards.length){stopReminderSound();return;}cards.forEach(x=>x.classList.add('shaking'));try{reminderAudio.currentTime=0;const p=reminderAudio.play();if(p&&p.catch)p.catch(()=>{});}catch(e){}soundStopTimer=setTimeout(()=>{reminderAudio.pause();try{reminderAudio.currentTime=0}catch(e){}cards.forEach(x=>x.classList.remove('shaking'));soundCycleTimer=setTimeout(cycle,3000);},5000);};cycle();}
+function addAlertCard(layer,id,type,title,detail,urgent){const el=document.createElement('section');el.className='reminder '+(urgent?'urgent':'');el.dataset.id=id;const task=type==='task';el.innerHTML=`<button class="reminder-close" aria-label="Fechar alerta" onclick="dismissReminder('${id}')">×</button><div class="reminder-icon">${task?'⏰':'🚨'}</div><div class="when">${urgent?'ATENÇÃO · ATRASADO':task?'TAREFA AGENDADA':'CONTATO AGENDADO'}</div><h3>${task?'Hora de cumprir sua tarefa!':'Não deixe este lead esperando!'}</h3><p><b>${esc(title)}</b><br>${detail}</p><div class="reminder-actions">${task?`<button class="btn" onclick="completeTask('${id.replace('task-','')}')">✓ Realizada</button>`:`<button class="btn" onclick="reminderAction('${id}','done')">✓ Realizado</button>`}<button class="btn g" onclick="reminderAction('${id}','10')">⏰ Adiar 10 min</button><button class="btn g" onclick="reminderAction('${id}','60')">Adiar 1 hora</button><button class="btn g" onclick="dismissReminder('${id}')">Fechar alerta</button></div><div class="reminder-hint">O alerta e o tremor acompanham o som. Escolha uma ação para encerrar.</div>`;layer.appendChild(el);}
+function remind(){if(!sessionStorage.getItem('evolua_crm_unlocked'))return;const now=Date.now(),layer=$('#reminderLayer');let added=false;D.leads.filter(l=>l.prox&&!['Ganho','Perdido'].includes(l.etapa)&&new Date(l.prox).getTime()<=now&&!alerted.has(String(l.id))).forEach(l=>{alerted.add(String(l.id));addAlertCard(layer,String(l.id),'lead',l.nome,`${esc(l.curso||'Curso não informado')}<br>${esc(l.tel||'Sem WhatsApp')}${l.obs?'<br>'+esc(l.obs):''}`,new Date(l.prox).getTime()<now-60000);added=true});D.tarefas.filter(t=>!t.concluida&&t.quando&&new Date(t.quando).getTime()<=now&&!alerted.has('task-'+t.id)).forEach(t=>{alerted.add('task-'+t.id);addAlertCard(layer,'task-'+t.id,'task',t.titulo,`${esc(t.descricao||'Sem descrição')}<br>Duração prevista: ${t.duracao} minutos`,new Date(t.quando).getTime()<now-60000);added=true});if(added){layer.classList.add('active');playReminderSound();if('Notification'in window&&Notification.permission==='granted')new Notification('Evolua+ CRM · Você tem alertas pendentes',{body:'Há contatos ou tarefas aguardando sua ação.',requireInteraction:true});}}
+function dismissReminder(id){const el=[...document.querySelectorAll('.reminder')].find(x=>x.dataset.id===String(id));if(el)el.remove();const layer=$('#reminderLayer');if(!layer.querySelector('.reminder')){layer.classList.remove('active');stopReminderSound();}else playReminderSound();}
+function reminderAction(id,action){if(String(id).startsWith('task-')){const tid=String(id).slice(5),t=D.tarefas.find(x=>x.id===tid);if(!t)return;if(action==='done'){completeTask(tid);return;}t.quando=new Date(Date.now()+Number(action)*60000-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16);alerted.delete('task-'+tid);}else{const l=D.leads.find(x=>String(x.id)===String(id));if(!l)return;if(action==='done')l.prox='';else{l.prox=new Date(Date.now()+Number(action)*60000-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16);alerted.delete(String(id));}}save();dismissReminder(id);go();}
+// Acesso local simples. Não substitui autenticação em servidor.
+const AUTH_KEY='evolua_crm_access_v1';
+const loginForm=document.getElementById('loginForm');
+function prepareLogin(){const cfg=localStorage.getItem(AUTH_KEY);if(!cfg){document.getElementById('loginTitle').textContent='Configure seu acesso';document.getElementById('loginDesc').textContent='Crie o usuário e a senha inicial para abrir seu CRM neste navegador.';document.getElementById('loginFields').hidden=true;document.getElementById('setupFields').hidden=false;document.getElementById('loginBtn').textContent='Criar acesso';}else if(sessionStorage.getItem('evolua_crm_unlocked')==='1'){document.getElementById('entry').style.display='none';}}
+loginForm.addEventListener('submit',e=>{e.preventDefault();unlockReminderAudio();const err=document.getElementById('loginError');err.textContent='';let cfg;try{cfg=JSON.parse(localStorage.getItem(AUTH_KEY)||'null')}catch(_){cfg=null}if(!cfg){const u=document.getElementById('newUser').value.trim(),p=document.getElementById('newPass').value,c=document.getElementById('confirmPass').value;if(!u||p.length<6){err.textContent='Informe um usuário e uma senha com pelo menos 6 caracteres.';return}if(p!==c){err.textContent='As senhas não conferem.';return}localStorage.setItem(AUTH_KEY,JSON.stringify({user:u,pass:p}));sessionStorage.setItem('evolua_crm_unlocked','1');document.getElementById('entry').style.display='none';}else{const u=document.getElementById('user').value.trim(),p=document.getElementById('pass').value;if(u===cfg.user&&p===cfg.pass){sessionStorage.setItem('evolua_crm_unlocked','1');document.getElementById('entry').style.display='none';}else err.textContent='Usuário ou senha incorretos.';}});
+prepareLogin();
+setInterval(remind,12000);setTimeout(remind,2500);document.addEventListener('click',()=>{unlockReminderAudio();if('Notification'in window&&Notification.permission==='default'&&sessionStorage.getItem('evolua_crm_unlocked'))Notification.requestPermission().catch(()=>{})},{once:true});
+</script></body></html>

@@ -1,0 +1,17 @@
+EVOLUA+ CRM - ATUALIZAÇÃO COM IMPORTAÇÃO EM MASSA
+
+Novidade:
+- Importação de leads por planilhas Excel (.xlsx e .xls) e CSV.
+- Adiciona os leads à base atual sem substituir os registros existentes.
+- Ignora duplicados pelo número de telefone/WhatsApp.
+- Permite baixar um modelo Excel para preencher/importar.
+- Reconhece colunas como Nome, WhatsApp, Telefone, Curso, Interesse, Origem, Etapa, Valor e Observações.
+
+Para usar:
+1. Faça backup JSON do CRM antes de atualizar.
+2. Substitua os arquivos do repositório pelos arquivos desta pasta.
+3. Acesse Backup > Importação em massa de leads.
+4. Selecione a planilha Excel exportada pelo sistema de indicações.
+
+O leitor de Excel é carregado pela biblioteca SheetJS via CDN. É necessária conexão com a internet ao abrir o CRM para carregar essa biblioteca.
+Os dados continuam armazenados no LocalStorage do navegador. A importação não envia dados para servidor.
